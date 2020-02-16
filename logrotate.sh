@@ -1,6 +1,5 @@
 #!/bin/sh
 
-# output_app.log
 set -e
 
 CURRENT_LOG_FILE=$1
@@ -9,7 +8,6 @@ PREVIOUS_DAY_LOG_FILE="$CURRENT_LOG_FILE.1"
 OLDEST_FILE="$CURRENT_LOG_FILE.$2.gz"
 
 
-# OLDEST_FILE="$CURRENT_LOG_FILE_NAME.$2.gz"
 
 if [ -f $OLDEST_FILE ]; then
     rm $OLDEST_FILE
@@ -33,8 +31,6 @@ for file in $(find $HOME_DIR -name '*.gz'  -mindepth 1 -maxdepth 1 | sort -rn); 
 done
 
 
-# PREVIOUS_DAY_LOG_FILE="$CURRENT_LOG_FILE.1"
-
 if [ -f $PREVIOUS_DAY_LOG_FILE ]; then
     gzip $PREVIOUS_DAY_LOG_FILE
 else
@@ -48,8 +44,3 @@ else
     echo "$CURRENT_LOG_FILE does not exist"
 fi
 
-
-
-# for i in $(find . -name '*.log.*' -not -name '*.gz'  -mindepth 1 -maxdepth 1); do
-#     gzip $i
-# done
